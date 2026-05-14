@@ -12,7 +12,7 @@ Method descriptions (SIFT, IFCN, Lateral Reading, etc.) — in `methodologies.md
 
 **Source:** Turing's "Computing Machinery and Intelligence" — the Turing Test assesses intelligence through observable outcomes, not internal mechanisms.
 
-**For fact-checking:** a claim is verifiable if you can formulate a verification criterion in terms of an observable outcome. A fact is confirmed when verified through a primary source or independent sources. A factoid is widely circulated but fails verification on inspection.
+**For fact-checking:** a claim is verifiable if you can formulate a verification criterion in terms of an observable outcome. A fact is confirmed when verified through a primary source or independent sources. **Independent source** — does not share a common primary origin with another confirmation, is not a reprint or retelling, has no conflict of interest regarding the fact. A factoid is widely circulated but fails verification on inspection.
 
 **Parallel with SIFT:** SIFT practices the same principle — verify through outcome (find better coverage), not through analysis of the claim itself.
 
