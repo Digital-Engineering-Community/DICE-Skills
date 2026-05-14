@@ -4,7 +4,7 @@ description: "Search, verify, and analyze information. Identify claim types, sel
 name: fact-checking
 version: 6.0.1
 author: Digital Engineering Community
-license: MIT
+license: Apache-2.0
 properties: []
 ---
 
