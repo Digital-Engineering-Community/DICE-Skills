@@ -36,6 +36,8 @@ If the material does not fit examples — formulate the main claim in your own w
 
 Check the main claim using Popper's method: formulate 2–3 specific conditions under which the main claim would be false. For each condition, search for supporting data. If at least one disconfirming condition is confirmed — the main claim fails.
 
+**When to apply:** use when the material has a clear argumentative structure (report, analytical brief, post with thesis) or when the stakes are high enough that a false main claim would mislead. Skip for simple lookup tasks (e.g., "does this standard exist?").
+
 If the main claim is not confirmed — do not stop blindly. Narrow the scope: continue checking claims that explain why the main claim failed, or prevent misleading overcorrection.
 
 ### 1.2. Atomic claims
@@ -236,7 +238,7 @@ Compile report using the template:
 
 **Suggested correction** — reformulated claims incorporating verification results.
 
-When sources conflict — present both positions, do not reduce to a common denominator. Assess the "research programme" (Lakatos): which side predicts new facts, and which explains post hoc.
+When sources conflict — present both positions, do not reduce to a common denominator. Apply Lakatos assessment only in publication-grade mode when the conflict is between competing methodological frameworks, not between data points.
 
 **Stage 5 completion criteria:** gaps noted, conflicts not smoothed over, result compiled per template.
 
