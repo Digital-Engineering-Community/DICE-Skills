@@ -1,30 +1,72 @@
+---
+title: "Fact-Checking Method Applicability Matrix"
+properties: []
+---
+
 # Method Applicability Matrix
 
-Claim type to minimal and full method set mapping.
+Claim type — methods by layer. Layers activate depending on mode (quick / standard / publication-grade).
 
-## Minimal Set
+## Layer 1. Operational (all modes)
 
-| Type | ≥2 sources | Lateral Reading | SIFT | Fermi | Turing | Popper | Lakatos | CoVe | Anti-hallucination | Anti-sycophancy | Stat. fact-checking | Bayes | Framing |
-|------|-----------|-----------------|------|-------|--------|--------|---------|------|--------------------|----------------|-------------------|-------|---------|
-| Figure-simple | ✅ | — | ✅ | ✅ fast | — | — | — | — | — | — | — | — | ✅ |
-| Figure-statistics | ✅ | ✅ | ✅ | ✅ | — | — | — | — | — | — | ✅ | — | ✅ |
-| Status | ✅ | — | — | — | ✅ mandatory | ✅ | — | — | — | — | — | — | — |
-| Cause | ✅ | — | — | — | — | ✅ mandatory | — | — | — | — | — | — | — |
-| Forecast | ✅ | — | — | ✅ mandatory | — | ✅ | — | — | — | — | — | ✅ mandatory | — |
-| Methodology | — | — | — | — | ✅ mandatory | ✅ | ✅ mandatory | — | — | — | — | — | — |
-| Own inference | — | — | — | — | — | — | — | ✅ mandatory | ✅ mandatory | ✅ mandatory | — | ✅ | — |
+| Type | SIFT | Primary source | Cross-checking | Lateral reading | Fermi estimation | Framing | Quote verification |
+|------|------|----------------|----------------|-----------------|------------------|---------|---------------------|
+| Figure-simple | ✅ | ✅ | ✅ | — | ✅ quick | ✅ | — |
+| Figure-statistical | ✅ | ✅ | ✅ | ✅ | ✅ quick | ✅ | — |
+| Status | ✅ | ✅ | ✅ | ✅ | — | — | — |
+| Cause | ✅ | ✅ | ✅ | — | — | — | — |
+| Forecast | ✅ | ✅ | ✅ | — | ✅ required | — | — |
+| Methodology | — | ✅ | ✅ | ✅ | — | — | — |
+| Quote | — | ✅ required | — | — | — | — | ✅ required |
+| Attribution | ✅ | ✅ | — | — | — | — | — |
+| Existence | ✅ | ✅ required | — | — | — | — | — |
+| Comparison | ✅ | ✅ | ✅ | — | — | ✅ | — |
+| Normative | — | ✅ required | — | — | — | — | — |
+| Scientific result | — | ✅ | ✅ | — | — | — | — |
+| Own inference | — | — | — | — | — | — | — |
 
-## Full Set (for publications)
+## Layer 2. Statistical (standard and publication-grade modes)
 
-Minimal + additional:
-- Fermi — for all types (additional)
-- Anti-hallucination — only for "figure-simple", "figure-statistics", "status", "own inference"
-- Framing — only for "figure-simple", "figure-statistics", "forecast" (types with numbers)
-- Lateral Reading — for all types, if external sources exist
+Only for claims with numerical data. Each method has applicability conditions.
 
-## When to Expand the Set
+| Type | Effect size | GRIM test | Benford's law | Bayes / base rates |
+|------|-------------|-----------|---------------|---------------------|
+| Figure-simple | — | — | — | — |
+| Figure-statistical | ✅ (if significance threshold exists) | ✅ (integer scales, known N) | ✅ (large natural data) | — |
+| Forecast | — | — | — | ✅ required |
+| Comparison | ✅ | — | — | — |
+| Scientific result | ✅ | ✅ | — | ✅ |
+| Own inference | — | — | — | ✅ |
 
-If results diverge — return to Stage 2 and add:
-- Source conflict → add Popper (seek disconfirmation of both sides)
-- Unconfirmed → add Turing (reformulate the verification criterion)
-- Factoid → add Lateral Reading (verify the propagator)
+Applicability conditions:
+- **Effect size** — applicable when there is a quantitative result and a domain significance threshold. Without a threshold — state "not assessed".
+- **GRIM test** — only for means from integer scales with known N.
+- **Benford's law** — not applicable for IDs, bounded ranges, small samples (< 100).
+- **Bayes** — not applicable if base rate is unknown. Do not invent numbers.
+
+## Layer 3. Protective (all modes)
+
+| Type | Anti-hallucination | Anti-sycophancy | Chain-of-Verification (CoVe) |
+|------|--------------------|-----------------|------------------------------|
+| All types | ✅ | ✅ (when contradicting user's position) | — |
+| Own inference | ✅ required | ✅ required | ✅ required |
+
+## Layer 4. Epistemic (publication-grade mode only)
+
+| Type | Popper | Lakatos | Kuhn | Turing |
+|------|--------|---------|------|--------|
+| Status | — | — | — | ✅ |
+| Cause | ✅ | — | — | — |
+| Forecast | ✅ | — | — | — |
+| Methodology | ✅ | ✅ required | — | ✅ |
+| Scientific result | ✅ | ✅ | — | — |
+| When sources conflict | ✅ | — | ✅ required | — |
+
+⚠️ Do not apply in quick and standard modes without explicit necessity.
+
+## When to expand the set (feedback loop)
+
+If results diverge at Stage 3 — return to Stage 2 and add:
+- Conflicting sources — add Popper (seek refutation of both sides)
+- Unconfirmed — add Turing (reformulate verification criterion)
+- Factoid / same-source echo — add lateral reading (check the spreader)

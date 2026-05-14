@@ -1,48 +1,57 @@
-# Fact-Checking: Philosophical Context
+---
+title: "Фактчекинг — философский контекст и теория"
+---
 
-## Operational Criterion (Turing, 1950)
+# Фактчекинг: философский контекст
 
-**Source:** "Computing Machinery and Intelligence" — the Turing Test checks intelligence through an observable result, not through the internal mechanism.
+Описания методик (SIFT, IFCN, Lateral Reading и др.) — в `skills/fact-checking/references/methodologies.md`. Здесь — философский контекст, не дублирующий references.
 
-**For fact-checking:** a claim is verifiable if you can formulate a verification criterion through an observable result. Fact ≈ verification result via ≥2 independent sources. Factoid ≈ widely circulated, but verification does not pass.
+---
 
-**Parallel with SIFT:** SIFT practices the same principle — verify through the result (find better coverage), not through analysis of the claim itself.
+## Операциональный критерий (Тьюринг, 1950)
 
-## Falsificationism (Popper)
+**Источник:** концепция «Вычисление и мышление» — Тест Тьюринга проверяет интеллектуальность через наблюдаемый результат, а не через внутренний механизм.
 
-A theory is scientific not when it is confirmed, but when it can be refuted. Confirmation does not prove; one refutation is enough. Practice: deliberately seek facts that would disprove the hypothesis.
+**Для фактчекинга:** утверждение проверяемо, если можно сформулировать критерий проверки через наблюдаемый результат. Факт ≈ результат верификации через ≥2 независимых источника. Фактоид ≈ широко растиражирован, но проверка не проходит.
 
-## Scientific Research Programs (Lakatos)
+**Параллель с SIFT:** SIFT практикует тот же принцип — проверяй через результат (find better coverage), а не через анализ самого утверждения.
 
-Hard core (indisputable assumptions) + protective belt (auxiliary hypotheses). A progressive program predicts new facts. A degenerating one — only explains post hoc. Source assessment: does it predict something new, or only retrofit explanations after the fact?
+## Фальсификационизм (Поппер)
 
-## Paradigms (Kuhn)
+Теория научна не когда подтверждается, а когда можно её опровергнуть. Подтверждение не доказывает, одно опровержение — достаточно. Практика: целенаправленно искать факты, которые опровергли бы гипотезу.
 
-Science develops through revolutions. Paradigms are incommensurable — adherents speak different languages. Practice: when sources radically diverge, do not reduce to a common denominator, but honestly show different frames of reference.
+## Научно-исследовательские программы (Лакатос)
 
-## Connection Between Caulfield and Wineburg
+Жёсткое ядро (неоспоримые допущения) + защитный пояс (вспомогательные гипотезы). Прогрессивная программа предсказывает новые факты. Вырождающаяся — только объясняет post hoc. Оценка источника: предсказывает ли он что-то новое, или только подгоняет объяснения задним числом?
 
-Caulfield (SIFT) and Wineburg (Lateral Reading) are co-authors of the book "Verified: How to Think Straight, Talk Better, and Build Your Knowledge" (University of Chicago Press). Two methodologies that we describe as independent were created by people working together.
+## Парадигмы (Кун)
 
-## Claim Classification
+Наука развивается через революции. Парадигмы несоизмеримы — сторонники говорят на разных языках. Практика: при радикальном расхождении источников не сводить к общему знаменателю, а честно показать разные системы координат.
 
-- **Fact** — ≥2 independent sources, primary source accessible
-- **Factoid** — widely circulated, but without a reliable primary source
-- **Conflict** — sources diverge
-- **Unconfirmed** — insufficient data
+## Связь Колфилда и Вайнбурга
+
+Колфилд (SIFT) и Вайнбург (Lateral Reading) — соавторы книги «Verified: How to Think Straight, Talk Better, and Build Your Knowledge» (University of Chicago Press). Две методики, которые мы описываем как независимые, созданы людьми, работающими вместе.
+
+## Claim classification
+
+- **Supported** — confirmed by a reliable primary source or independent sources
+- **Partially supported** — correct in essence, but with caveats
+- **Unsupported** — insufficient data
+- **Conflicting** — sources diverge
 - **Refuted** — demonstrably false
+- **Misleading** — not technically false, but distorts context
 
-## Sources
+## Источники
 
 1. SIFT: https://hapgood.us/2019/06/19/sift-the-four-moves/
 2. Lateral Reading: Wineburg & McGrew, SSRN 3048994
 3. IFCN: https://ifcncodeofprinciples.poynter.org/
-4. Sagan: "The Demon-Haunted World", Random House, 1995
-5. Bergstrom/West: https://www.callingbullshit.org/
-6. Chatfield: "Critical Thinking", Oxford University Press
-7. Nepryakhin: "Anatomy of Delusions", Alpina
-8. Komleva/Solomin: "Virtual Communication and Social Networks", 2022, 1(4): 167-171
-9. Popper: "The Logic of Scientific Discovery", 1959
-10. Lakatos: "Falsification and the Methodology of SRP", 1970
-11. Kuhn: "The Structure of Scientific Revolutions", 1962
+4. Саган: «The Demon-Haunted World», Random House, 1995
+5. Бергстром/Уэст: https://www.callingbullshit.org/
+6. Чэтфилд: «Critical Thinking», Oxford University Press
+7. Непряхин: «Анатомия заблуждений», Альпина
+8. Комлева/Соломин: «Виртуальная коммуникация и социальные сети», 2022, 1(4): 167-171
+9. Поппер: «The Logic of Scientific Discovery», 1959
+10. Лакатос: «Falsification and the Methodology of SRP», 1970
+11. Кун: «The Structure of Scientific Revolutions», 1962
 12. CoVe: Dhuliawala et al., arXiv:2309.11495, 2023
