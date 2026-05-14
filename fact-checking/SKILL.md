@@ -82,7 +82,7 @@ Determine the type of each claim. Methods by type — see [references/applicabil
 
 Determine the mode based on claim types:
 
-- **Quick** — all claims are "figure-simple", "existence", "attribution". Operational methods + protective mechanisms. Verify via primary source + sanity check, deliver verdict in 1–3 sentences. Stages 2–4 abbreviated, Stage 5 — no detailed report.
+- **Quick** — all claims are "figure-simple", "existence", "attribution", "status". Operational methods + protective mechanisms. Verify via primary source + sanity check, deliver verdict in 1–3 sentences. Stages 2–4 abbreviated, Stage 5 — no detailed report. Status claims qualify for quick mode only when verifiable through a single primary source.
 - **Standard** — claims include "figure-statistical", "cause", "forecast", "status", "comparison", "quote", "normative". Apply operational, statistical, and protective methods. Full report using template (Stage 5).
 - **Publication-grade** — material intended for channel, article, conference, or includes "methodology", "scientific result" types. Apply all method layers, including epistemic frameworks. Full report using template.
 

@@ -13,7 +13,7 @@ Claim type — methods by layer. Layers activate depending on mode (quick / stan
 |------|------|----------------|----------------|-----------------|------------------|---------|---------------------|
 | Figure-simple | ✅ | ✅ | ✅ | — | ✅ quick | ✅ | — |
 | Figure-statistical | ✅ | ✅ | ✅ | ✅ | ✅ quick | ✅ | — |
-| Status | ✅ | ✅ | ✅ | ✅ | — | — | — |
+| Status | ✅ quick | ✅ | ✅ | ✅ | — | — | — |
 | Cause | ✅ | ✅ | ✅ | — | — | — | — |
 | Forecast | ✅ | ✅ | ✅ | — | ✅ required | — | — |
 | Methodology | — | ✅ | ✅ | ✅ | — | — | — |
