@@ -6,7 +6,7 @@ Skills are ready-made instructions for agents: fact-checking, research, content,
 
 ## Skills
 
-- **fact-checking** — identify claims, select verification methods, verify, classify, synthesize a report. 12 methods from SIFT to Bayes.
+- **fact-checking** — identify claims, select verification methods, verify, classify, synthesize a report. 3 modes (quick / standard / publication-grade), 4 method layers (operational, statistical, protective, epistemic), 13 claim types, applicability guards, false rigor rule, uncertainty/confidence reporting.
 
 ## Usage
 
