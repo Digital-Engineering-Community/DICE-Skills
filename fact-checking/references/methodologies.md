@@ -81,3 +81,65 @@ Form of presentation ≠ content. Cognitive biases, logic, argumentation.
 Unified fact-checking algorithm for online media journalists. Verification: proper names, sources, quotes, details, visual elements.
 
 Source: Komleva V.Yu., Solomin V.E., "Virtual Communication and Social Networks", 2022, 1(4): 167-171.
+
+---
+
+## v6 Additions
+
+The following methods and principles were introduced in v6.0 of the skill and are documented here for completeness.
+
+### Primary-Source-First Principle
+
+Prefer primary sources over secondary retellings. An arXiv paper — the paper itself, not a blog summary. A GitHub repo — the repo, not a news article about it. A law or standard — the official text.
+
+Two retellings do not make a fact more reliable if both cite the same primary source. See also "Same-source echo" below.
+
+### Source Independence and Same-Source Echo
+
+Before counting "confirmed by 2+ sources", check whether sources share a common primary origin:
+
+- **Primary-source confirmation** — fact confirmed by the primary source directly.
+- **Independent corroboration** — two sources confirm independently, without sharing an origin.
+- **Same-source echo** — multiple sources retell the same original source. Does not count as independent confirmation.
+
+Also check for conflict of interest: does the source report the fact itself, or cite someone else?
+
+### Quote Verification
+
+Open the original document, compare verbatim. Check context: is the quote taken out of context? Is the attribution correct? Does the surrounding text change the meaning?
+
+Applicable to claim type "quote" — always required in all modes.
+
+### Scientific and Technical Claim Verification
+
+Separate workflow for scientific/technical claims:
+
+1. Check paper metadata (authors, date, journal)
+2. Compare abstract with the claim formulation
+3. Check tables/appendix for specific numbers
+4. Check code and data availability
+5. Check peer review status
+6. Check confidence intervals
+7. Distinguish direct measurement from model-derived estimate
+
+### False Rigor Rule
+
+Do not name a method if you have not applied it concretely and cannot state the result.
+
+Bad: "Using Popperian falsification, the claim is plausible."
+Good: "Search for disconfirming evidence: X, Y. Found Z, which weakens the claim."
+
+### Uncertainty, Confidence, and Caveats
+
+For each verdict, state:
+- **Confidence level** — high / medium / low
+- **Evidence quality** — primary / secondary / indirect / absent
+- **Caveats** — what could change the verdict
+- **Not checked** — what was not verified
+
+### Output Template (Standard and Publication-Grade)
+
+1. **Summary verdict** — 1–3 sentences: what was checked, overall result.
+2. **Claim checks** — for each: claim, verdict, evidence, sources with dates, caveats, confidence level.
+3. **Material issues** — overstatements, missing context, unsupported assumptions.
+4. **Suggested correction** — reformulated claims incorporating verification results.
