@@ -6,7 +6,7 @@ version: 6.0.0
 properties: []
 ---
 
-**MANDATORY** when verifying sources, fact-checking claims, and conducting analysis.
+**Use when** verifying factual claims, source reliability, quoted numbers, research claims, or publication-ready analytical text.
 
 ## REGULATION
 
@@ -84,7 +84,7 @@ Determine the mode based on claim types:
 
 ### 1.5. Significance
 
-Assess whether the claim affects the argument's conclusion. A claim that is the foundation of the argument — verify обязательно. A claim that does not affect the conclusion — low priority.
+Assess whether the claim affects the argument's conclusion. A claim that is the foundation of the argument — verify with high priority. A claim that does not affect the conclusion — low priority.
 
 **Stage 1 completion criteria:** main claim formulated and checked, each claim classified by type, mode determined by types, opinions discarded, significance assessed.
 
@@ -165,7 +165,7 @@ Formulate a search query and execute through **two search channels**:
 1. **Regional channel** — local-language sources, national regulations, companies, standards.
 2. **International channel** — international sources in all languages. Default to English, additionally adapt to the language of the expected source (Chinese, Arabic, Japanese, etc.).
 
-Extract content via web_fetch; if the site blocks — use browser.
+Fetch/extract source content using available web or browser tools.
 
 If the task goes beyond fact-checking (complex research, comparative analysis, synthesis from multiple sources) — pass to the `research` skill.
 
