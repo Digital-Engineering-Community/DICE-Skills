@@ -2,7 +2,9 @@
 title: "Fact-Checking: Identification, Method Selection, Verification"
 description: "Search, verify, and analyze information. Identify claim types, select methods by mode, verify, classify. Apply to all verification and fact-checking tasks."
 name: fact-checking
-version: 6.0.0
+version: 6.0.1
+author: Digital Engineering Community
+license: MIT
 properties: []
 ---
 
