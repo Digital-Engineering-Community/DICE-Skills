@@ -1,8 +1,8 @@
 ---
 title: "Fact-Checking: Identification, Method Selection, Verification"
-description: "Search, verify, and analyze information. Identify claim types, select methods by mode, verify, classify. Apply to all verification and fact-checking tasks."
+description: "Use when verifying factual claims, source reliability, quotations, numbers, research claims, or publication-ready analytical text. Identifies claim type, selects methods by mode (quick / standard / publication), executes verification, classifies verdict."
 name: fact-checking
-version: 6.0.1
+version: 6.0.3
 author: Digital Engineering Community
 license: Apache-2.0
 properties: []
@@ -46,7 +46,12 @@ Break the text into minimal verifiable units. One claim = one check.
 
 Example: "Kriogenmash is a major player, revenue 8.6 billion, growth 48%" — 3 claims: (1) major player [status], (2) revenue 8.6 billion [figure-simple], (3) growth 48% [figure-simple].
 
-Opinions ("seems", "probably", "feels like") — discard, not subject to fact-checking.
+Opinions with markers ("seems", "I think", "feels like") — strip the **form**, but check the **factual core**. If a verifiable claim sits behind the opinion wrapper, extract and verify it. Discard only pure opinions with no factual core.
+
+Examples:
+- "It seems to me revenue is 8.6B" → strip "seems", verify "revenue is 8.6B"
+- "I think birds can't fly that far" → strip "I think", verify "birds can't fly that far"
+- "Quality feels like it's getting worse" → pure opinion, not verifiable
 
 ### 1.3. Claim types
 
@@ -90,7 +95,7 @@ Determine the mode based on claim types:
 
 Assess whether the claim affects the argument's conclusion. A claim that is the foundation of the argument — verify with high priority. A claim that does not affect the conclusion — low priority.
 
-**Stage 1 completion criteria:** main claim formulated and checked, each claim classified by type, mode determined by types, opinions discarded, significance assessed.
+**Stage 1 completion criteria:** main claim formulated and checked, each claim classified by type, mode determined by types, opinions analyzed for factual core, significance assessed.
 
 ## Stage 2. Method selection
 
@@ -99,7 +104,7 @@ Methods are divided into four layers. Layer selection depends on mode and claim 
 **Feedback loop:** if results diverge at Stage 3 — return to Stage 2 and add:
 - Conflicting sources — add Popper (falsificationism)
 - Unconfirmed — add Turing (operational criterion)
-- Factoid / same-source echo — add lateral reading
+- Widely repeated but weakly sourced / same-source echo — add lateral reading
 
 ### Layer 1. Operational methods (all modes)
 
