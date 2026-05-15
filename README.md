@@ -1,17 +1,17 @@
 # Skills
 
-Открытая библиотека навыков для ИИ-агентов от [Digital Center of Engineering — DICE](https://gitverse.ru/fielddev).
+Open library of AI agent skills from [Digital Center of Engineering — DICE](https://github.com/Digital-Engineering-Community).
 
-Навыки — готовые инструкции для агентов. Каждый навык самодостаточен: регламент, методы, примеры, references.
+Skills are ready-made instructions for agents. Each skill is self-contained: regulation, methods, examples, references.
 
-## Навыки
+## Skills
 
-- **fact-checking** v6.1.0 — идентификация утверждений, выбор методов верификации, проверка, классификация, синтез отчёта. 3 режима (быстрый / стандартный / публикационный), 4 слоя методов (операциональные, статистические, защитные, эпистемические), 15 типов утверждений, двухпроходный risk gate, иерархия источников A–E, алгоритм Бенфорда, false rigor rule.
+- **fact-checking** v6.1.0 — claim identification, verification method selection, checking, classification, report synthesis. 3 modes (quick / standard / publication), 4 method layers (operational, statistical, protective, epistemic), 15 claim types, two-pass risk gate, A–E source hierarchy, Benford's algorithm, false rigor rule.
 
-## Использование
+## Usage
 
-Скопируй директорию навыка в свой проект. Подключи SKILL.md к своему агенту. References — рядом, ссылками из навыка.
+Copy the skill directory into your project. Connect SKILL.md to your agent. References are located alongside, linked from the skill.
 
-## Лицензия
+## License
 
 Apache 2.0. Copyright 2026 Digital Center of Engineering — DICE.

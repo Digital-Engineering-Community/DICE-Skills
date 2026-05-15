@@ -1,6 +1,6 @@
 ---
-title: "Фактчекинг: идентификация, выбор методов, проверка"
-description: "Используй при проверке фактических утверждений, надёжности источников, цитат, чисел, научных результатов или публикационных текстов. Определяет тип утверждения, выбирает методы по режиму (быстрый / стандартный / публикационный), выполняет верификацию, классифицирует вердикт."
+title: "Fact-Checking: Identification, Method Selection, Verification"
+description: "Use when verifying factual claims, source reliability, quotes, numbers, scientific results, or publication texts. Identifies claim type, selects methods by mode (quick / standard / publication), performs verification, classifies verdict."
 properties:
   - name: name
     value: ["fact-checking"]
@@ -12,338 +12,337 @@ properties:
     value: ["Apache-2.0"]
 ---
 
-Используй при проверке источников, фактчекинге утверждений и подготовке материалов к публикации. Навык должен вести агента к проверяемому протоколу, а не к перечислению методологических ярлыков: для каждого существенного утверждения фиксируй критерий проверки, тип источника, уровень доступа к доказательству и итоговый вердикт.
+Use for source verification, fact-checking claims, and preparing materials for publication. The skill must guide the agent toward a verifiable protocol, not a list of methodological labels: for each substantive claim, record the verification criterion, source type, level of access to evidence, and final verdict.
 
-## РЕГЛАМЕНТ
+## REGULATION
 
-**Fast-path:** для простых справочных запросов (цифра-простая, существование, атрибуция) — один первичный источник, вердикт в 1–3 предложения, без полного отчёта. Risk gate может повысить режим.
+**Fast-path:** for simple reference queries (simple figure, existence, attribution) — one primary source, verdict in 1–3 sentences, no full report. Risk gate may upgrade the mode.
 
-**Этап 1. Идентификация:** Сформулируй главное утверждение, разложи на атомарные, определи буквальное/риторическое, классифицируй по типу, примени risk gate и выбери режим (быстрый / стандартный / публикационный), оцени значимость. Смотри раздел «Этап 1».
-**Этап 2. Выбор методов:** Сопоставь тип с набором методов по слоям. Смотри раздел «Этап 2».
-**Этап 3. Проверка:** Найди достаточное доказательство: первичный источник, независимое подтверждение или явно помеченное отсутствие данных. Два контура поиска используй, когда первичный источник не закрывает вопрос или нужен независимый контекст. Смотри раздел «Этап 3».
-**Этап 4. Классификация:** Присвой вердикт (подтверждено / частично подтверждено / не подтверждено / противоречие / опровергнуто / вводит в заблуждение / непроверяемо в данной формулировке), укажи уровень достоверности, качество доказательств и уровень доступа к источнику. Смотри раздел «Этап 4».
-**Этап 5. Синтез:** Собери отчёт по шаблону. Смотри раздел «Этап 5».
-**Этап 6. Архивирование:** Сохрани отчёт, обнови индексы. Смотри раздел «Этап 6».
+**Stage 1. Identification:** Formulate the main claim, decompose into atomic claims, determine literal/rhetorical, classify by type, apply risk gate and select mode (quick / standard / publication), assess significance. See "Stage 1" section.
+**Stage 2. Method selection:** Match type to method set by layers. See "Stage 2" section.
+**Stage 3. Verification:** Find sufficient evidence: primary source, independent confirmation, or explicitly marked absence of data. Use two search circuits when the primary source does not resolve the question or independent context is needed. See "Stage 3" section.
+**Stage 4. Classification:** Assign verdict (confirmed / partially confirmed / unconfirmed / contradiction / refuted / misleading / unverifiable in this formulation), indicate confidence level, source level, and access level. See "Stage 4" section.
+**Stage 5. Synthesis:** Compile report using template. See "Stage 5" section.
+**Stage 6. Archiving:** Save report, update indexes. See "Stage 6" section.
 
-**Правила:** 1) Не генерируй цифры — только из источников или явно помеченной Fermi-оценки. 2) Проверяй дату источника — устаревшие помечай. 3) Сканируй на угодливость (sycophancy) — не соглашайся с пользователем без проверки. 4) Проверяй собственные выводы перед публикацией. 5) Красный флаг — останови обычный вывод и сообщи оператору, если есть риск: вред здоровью, клевета / репутационный вред, публикация личных данных без согласия, коммерческая тайна клиента/партнёра, медицинский/юридический/финансовый совет, детали активных переговоров. 6) Не применяй статистические методы без проверки условий применимости. 7) Не называй метод без конкретного результата. 8) Если базовая частота неизвестна — укажи, не придумывай.
-**Исключения:** 1) Нет источников — запиши «не подтверждено» или «непроверяемо в данной формулировке», не додумывай. 2) Если нужна полноценная разведка темы, а не проверка конкретных утверждений — передай в навык `research` / процесс `research-process`.
+**Rules:** 1) Do not generate numbers — only from sources or explicitly marked Fermi estimates. 2) Check source dates — mark outdated ones. 3) Scan for sycophancy — do not agree with the user without verification. 4) Verify your own conclusions before publication. 5) Red flag — stop normal output and notify the operator if there is risk of: harm to health, defamation / reputational damage, publication of personal data without consent, client/partner trade secrets, medical/legal/financial advice, details of active negotiations. 6) Do not apply statistical methods without checking applicability conditions. 7) Do not name a method without a concrete result. 8) If the base rate is unknown — state it, do not invent one.
+**Exceptions:** 1) No sources — record "unconfirmed" or "unverifiable in this formulation", do not speculate. 2) If full topic research is needed rather than verification of specific claims — delegate to a research skill.
 
-## Этап 1. Идентификация
+## Stage 1. Identification
 
-### 1.1. Главное утверждение
+### 1.1. Main claim
 
-Сформулируй главное утверждение проверяемого текста. Примеры формулировок для разных материалов:
-- Навык — «набор методов достаточен для задачи»
-- Пост — «аргумент доказывает вывод»
-- Отчёт — «выводы следуют из данных»
-- Аналитическая записка — «оценка обоснована данными»
-- Презентация — «ключевой тезис подтверждён»
+Formulate the main claim of the text being checked. Example formulations for different materials:
+- Skill — "the set of methods is sufficient for the task"
+- Post — "the argument proves the conclusion"
+- Report — "the conclusions follow from the data"
+- Analytical note — "the assessment is supported by data"
+- Presentation — "the key thesis is confirmed"
 
-Если материал не попадает под примеры — сформулируй главное утверждение своими словами: какую главную мысль проверяем.
+If the material does not fit the examples — formulate the main claim in your own words: what main idea are you checking.
 
-Для главного утверждения сформулируй 2–3 условия, которые могли бы его ослабить или опровергнуть. Не называй это «Поппером», если не показываешь конкретные условия и результат поиска. Одно найденное опровергающее условие автоматически ломает только абсолютные утверждения («всегда», «никогда», «единственный»). Для вероятностных и контекстных утверждений оно снижает уверенность или требует уточнения рамки.
+For the main claim, formulate 2–3 conditions that could weaken or refute it. Do not call this "Popper" unless you show specific conditions and search results. One refuting condition automatically breaks only absolute claims ("always", "never", "the only one"). For probabilistic and contextual claims it reduces confidence or requires frame clarification.
 
-**Когда применять:** используй для материалов с чёткой аргументативной структурой (отчёт, аналитическая записка, пост с тезисом) или при высокой цене ошибки. Пропускай для простых справочных запросов, проверки цитат и художественных/риторических фраз, пока пользователь не просит проверить их буквально.
+**When to apply:** use for materials with clear argumentative structure (report, analytical note, thesis-driven post) or when the cost of error is high. Skip for simple reference queries, quote checks, and artistic/rhetorical phrases unless the user asks for literal verification.
 
-Если главное утверждение не подтверждается — не останавливайся слепо. Сузь scope: продолжай проверять утверждения, которые объясняют, почему главное не подтвердилось, или предотвращают ошибочную корректировку.
+If the main claim is not confirmed — do not stop blindly. Narrow the scope: continue checking claims that explain why the main one failed, or prevent an erroneous correction.
 
-### 1.2. Атомарные утверждения
+### 1.2. Atomic claims
 
-Разложи текст на минимальные проверяемые единицы. Одно утверждение = одна проверка.
+Decompose the text into minimal verifiable units. One claim = one check.
 
-Пример: «Криогенмаш — крупный игрок, выручка 8,6 млрд, рост 48%» — 3 утверждения: (1) крупный игрок [статус], (2) выручка 8,6 млрд [цифра-простая], (3) рост 48% [цифра-простая].
+Example: "Kriogenmash is a major player, revenue 8.6 billion, growth 48%" — 3 claims: (1) major player [status], (2) revenue 8.6 billion [simple figure], (3) growth 48% [simple figure].
 
-Мнения с маркерами («кажется», «я считаю», «по ощущениям») — отсеивай **форму**, но проверяй **фактическое ядро**. Если за обёрткой мнения есть проверяемое утверждение — извлекай и проверяй. Отбрасывай только чистые мнения без фактического ядра.
+Opinions with markers ("it seems", "I think", "in my feeling") — strip the **form** but check the **factual core**. If behind the opinion wrapper there is a verifiable claim — extract and check it. Discard only pure opinions without a factual core.
 
-Примеры:
-- «Мне кажется, выручка 8,6 млрд»: отсеивай «кажется», проверяй «выручка 8,6 млрд»
-- «Я считаю, что птицы не долетят»: отсеивай «считаю», проверяй «птицы не долетят»
-- «По ощущениям, качество ухудшается»: чистое мнение, не проверяется
+Examples:
+- "It seems to me, revenue is 8.6 billion": strip "it seems", check "revenue is 8.6 billion"
+- "I think the birds won't make it": strip "I think", check "the birds won't make it"
+- "It feels like quality is declining": pure opinion, not verifiable
 
-### 1.3. Буквальное, риторическое и проверяемое
+### 1.3. Literal, rhetorical, and verifiable
 
-Перед типированием определи, как утверждение используется:
+Before typing, determine how the claim is being used:
 
-- **Буквально как факт:** проверяй обычным способом, переходи к 1.4.
-- **Риторически / художественно / как шутка:** не проверяй как факт, если пользователь не просит буквальную проверку. Пометка «риторическое», стоп.
-- **Оценочно или расплывчато:** сформулируй операционный критерий. Если критерий невозможен, выноси вердикт «непроверяемо в данной формулировке», стоп.
+- **Literal as fact:** check normally, proceed to 1.4.
+- **Rhetorically / artistically / as a joke:** do not check as fact unless the user requests literal verification. Mark as "rhetorical", stop.
+- **Evaluative or vague:** formulate an operational criterion. If no criterion is possible, issue verdict "unverifiable in this formulation", stop.
 
-Пример: «Редкая птица долетит до середины Днепра» как цитата Гоголя требует проверки цитаты (буквальное); как художественная гипербола классифицируется как риторическое, стоп.
+Example: "A rare bird will reach the middle of the Dnieper" as a Gogol quote requires quote verification (literal); as an artistic hyperbole it is classified as rhetorical, stop.
 
-### 1.4. Типы утверждений
+### 1.4. Claim types
 
-Определи тип каждого утверждения. Методы по типу — см. [references/applicability-matrix.md](references/applicability-matrix.md).
+Determine the type of each claim. Methods by type — see [references/applicability-matrix.md](references/applicability-matrix.md).
 
-**Цифра-простая:** конкретное число, дата, имя, название без статистического контекста. Пример: «выручка 8,6 млрд», «основан в 2005 году». Методы: SIFT, первичный источник, перекрёстная проверка, Фрейминг.
+**Simple figure:** a specific number, date, name, title without statistical context. Example: "revenue 8.6 billion", "founded in 2005". Methods: SIFT, primary source, cross-checking, framing.
 
-**Цифра-статистика:** средние, проценты, p-value, доверительные интервалы, размеры выборок. Пример: «средний рост 175 см при N=200», «точность 97%». Методы: SIFT, первичный источник, перекрёстная проверка, латеральное чтение + GRIM, размер эффекта, закон Бенфорда (по условиям применимости).
+**Statistics:** averages, percentages, p-values, confidence intervals, sample sizes. Example: "average height 175 cm with N=200", "accuracy 97%". Methods: SIFT, primary source, cross-checking, lateral reading + GRIM, effect size, Benford's law (subject to applicability conditions).
 
-**Статус:** утверждение о положении дел. Пример: «термин устоялся», «стандарт принят». Методы: SIFT, латеральное чтение, перекрёстная проверка.
+**Status:** a claim about a state of affairs. Example: "the term is established", "the standard has been adopted". Methods: SIFT, lateral reading, cross-checking.
 
-**Причина:** причинно-следственная связь. Пример: «санкции привели к росту цен на 40%». Методы: SIFT, перекрёстная проверка.
+**Causation:** a cause-and-effect relationship. Example: "sanctions led to a 40% price increase". Methods: SIFT, cross-checking.
 
-**Прогноз:** утверждение о будущем или оценка. Пример: «рынок вырастет в 3 раза». Методы: SIFT, Fermi-оценка, Байес / базовые частоты.
+**Prediction:** a claim about the future or an estimate. Example: "the market will grow 3x". Methods: SIFT, Fermi estimate, Bayes / base rates.
 
-**Методология:** оценка достоверности подхода, метода, школы. Пример: «SIFT — стандарт фактчекинга в журналистике». Методы: латеральное чтение, перекрёстная проверка.
+**Methodology:** assessment of an approach's, method's, or school's reliability. Example: "SIFT is the fact-checking standard in journalism". Methods: lateral reading, cross-checking.
 
-**Цитата:** точность цитирования. Пример: «Эйнштейн говорил: "Воображение важнее знания"» — проверяй, действительно ли он это говорил и в каком источнике впервые появилось. Методы: проверка цитат, первичный источник.
+**Quote:** accuracy of citation. Example: "Einstein said: 'Imagination is more important than knowledge'" — check whether he actually said it and in which source it first appeared. Methods: quote verification, primary source.
 
-**Атрибуция:** кому принадлежит утверждение, идея, продукт. Пример: «PDCA предложил Деминг». Методы: SIFT, первичный источник.
+**Attribution:** who a claim, idea, or product belongs to. Example: "PDCA was proposed by Deming". Methods: SIFT, primary source.
 
-**Существование:** существует ли объект. Пример: «есть ГОСТ Р 57700.37». Методы: SIFT, первичный источник.
+**Existence:** whether an object exists. Example: "there is GOST R 57700.37". Methods: SIFT, primary source.
 
-**Сравнение:** «лучше/больше/первый/единственный». Пример: «Россия — лидер по запасам газа». Методы: SIFT, перекрёстная проверка, Фрейминг.
+**Comparison:** "better/bigger/first/only". Example: "Russia is the leader in gas reserves". Methods: SIFT, cross-checking, framing.
 
-**Нормативное:** ссылка на закон, стандарт, регламент. Пример: «согласно ISO 9001:2015, п. 4.1». Методы: первичный источник (текст закона/стандарта).
+**Normative:** reference to a law, standard, regulation. Example: "according to ISO 9001:2015, clause 4.1". Methods: primary source (text of the law/standard).
 
-**Научный результат:** утверждение о результатах исследования. Пример: «метод показывает точность 97% на датасете MNIST». Методы: проверка научных публикаций (этап 3).
+**Scientific result:** a claim about research results. Example: "the method shows 97% accuracy on the MNIST dataset". Methods: scientific publication verification (Stage 3).
 
-**Собственный вывод:** утверждение, сгенерированное агентом. Пример: «вероятно, причина в нехватке кадров». Методы: лёгкая цепочка верификации, анти-галлюцинация, анти-угодливость.
+**Agent's own conclusion:** a claim generated by the agent. Example: "the likely reason is staff shortage". Methods: light verification chain, anti-hallucination, anti-sycophancy.
 
-**Историко-личное:** утверждение из личной хроники или истории проекта: «мы встретились 1 марта», «команда получила грант», «первый прототип сделали за неделю». Методы: внутренний первичный источник + поиск внешнего следа; если внешнего следа нет, помечай как self-report / externally uncorroborated.
+**Historical-personal:** a claim from personal chronicle or project history: "we met on March 1", "the team received a grant", "the first prototype was built in a week". Methods: internal primary source + search for external trace; if no external trace exists, mark as self-report / externally uncorroborated.
 
-**Провенанс источника:** происхождение документа, скриншота, изображения, письма, архива. Методы: проверяй оригинал, метаданные, URL, дату публикации/изменения, архивную копию, независимый реестр; отдельно указывай, является ли скрин доказательством факта или только доказательством наличия скрина.
+**Source provenance:** origin of a document, screenshot, image, letter, archive. Methods: check the original, metadata, URL, publication/modification date, archival copy, independent registry; separately indicate whether a screenshot is evidence of the fact or only evidence that the screenshot exists.
 
-### 1.5. Risk gate и режим
+### 1.5. Risk gate and mode
 
-**Уровень А — контекст задачи (до разбора утверждений):**
-- результат будет опубликован в канале, статье, презентации или отчёте: повышай минимум до стандартного
-- тема: здоровье, право, финансы, репутация, персональные данные: повышай минимум до стандартного
+**Level A — task context (before claim decomposition):**
+- result will be published in a channel, article, presentation, or report: upgrade minimum to standard
+- topic: health, law, finance, reputation, personal data: upgrade minimum to standard
 
-**Уровень Б — после разбора утверждений:**
-- утверждение содержит «первый / единственный / лучший / крупнейший»: повышай до стандартного
-- источники конфликтуют: повышай до стандартного
-- источник имеет конфликт интересов: повышай до стандартного
-- лонгрид (5+ существенных утверждений): повышай до публикационного
+**Level B — after claim decomposition:**
+- claim contains "first / only / best / largest": upgrade to standard
+- sources conflict: upgrade to standard
+- source has a conflict of interest: upgrade to standard
+- longread (5+ substantive claims): upgrade to publication
 
-**Итоговый режим = max(уровень_А, уровень_Б, режим_по_типам).**
+**Final mode = max(level_A, level_B, mode_by_types).**
 
-После risk gate уточни режим по типам утверждений:
+After risk gate, refine the mode by claim types:
 
-- **Быстрый** — все утверждения типа «цифра-простая», «существование», «атрибуция», «статус». Применяй операциональные методы и защитные механизмы. Проверь через один первичный источник, при необходимости — Fermi-оценку. Выдай вердикт в 1–3 предложения. Этап 2 — выбери метод автоматически по типу, без обоснования. Этап 3 — один источник. Этап 4 — вердикт без confidence/caveats. Этап 5 — без развёрнутого отчёта. Утверждения типа «статус» допускаются в быстрый режим, только если проверяются через один первичный источник.
-- **Стандартный** — есть утверждения типа «цифра-статистика», «причина», «прогноз», «статус», «сравнение», «цитата», «нормативное». Применяй операциональные, статистические и защитные методы. Сформируй полный отчёт по шаблону (этап 5).
-- **Публикационный** — материал предназначен для канала, статьи, конференции, либо есть типы «методология», «научный результат». Применяй все слои методов, включая эпистемические рамки. Сформируй полный отчёт по шаблону.
+- **Quick** — all claims of type "simple figure", "existence", "attribution", "status". Apply operational methods and protective mechanisms. Check via one primary source, Fermi estimate if needed. Deliver verdict in 1–3 sentences. Stage 2 — select method automatically by type, without justification. Stage 3 — one source. Stage 4 — verdict without confidence/caveats. Stage 5 — no expanded report. "Status" claims are allowed in quick mode only if checked via one primary source.
+- **Standard** — contains claims of type "statistics", "causation", "prediction", "status", "comparison", "quote", "normative". Apply operational, statistical, and protective methods. Compile full report using template (Stage 5).
+- **Publication** — material intended for a channel, article, conference, or contains types "methodology", "scientific result". Apply all method layers, including epistemic frameworks. Compile full report using template.
 
-### 1.6. Значимость
+### 1.6. Significance
 
-Оцени, влияет ли утверждение на вывод аргумента. Факт — основа аргумента — подтверждай в первую очередь. Факт, не влияющий на вывод — низкий приоритет.
+Assess whether the claim affects the argument's conclusion. A fact that is the argument's foundation — confirm first. A fact that does not affect the conclusion — low priority.
 
-**Критерии завершения этапа 1:** главное утверждение сформулировано, существенные утверждения выделены, буквальное/риторическое использование определено, каждое утверждение классифицировано по типу, режим выбран через risk gate + типы, значимость оценена.
+**Stage 1 completion criteria:** main claim formulated, substantive claims identified, literal/rhetorical usage determined, each claim classified by type, mode selected via risk gate + types, significance assessed.
 
-## Этап 2. Выбор методов
+## Stage 2. Method selection
 
-Методы разделены на четыре слоя. Выбор слоя зависит от режима и типа утверждения. Подробное описание каждого метода — в файле [references/methodologies.md](references/methodologies.md). Матрица «тип × метод × слой» — в файле [references/applicability-matrix.md](references/applicability-matrix.md).
+Methods are divided into four layers. Layer selection depends on mode and claim type. Detailed description of each method — in [references/methodologies.md](references/methodologies.md). The "type × method × layer" matrix — in [references/applicability-matrix.md](references/applicability-matrix.md).
 
-**Цикл доработки:** при расхождении результатов на этапе 3 вернись к этапу 2 и добавь не «красивый метод», а недостающую операцию:
-- Конфликт источников — проверь даты, определения, первоисточники, независимость и уровень доступа к доказательству.
-- Не подтверждено — сформулируй операционный критерий проверки; если критерия нет, вердикт «непроверяемо в данной формулировке».
-- Эхо одного источника — добавь латеральное чтение и найди независимый источник или явно пометь same-source echo.
-- Методологический спор — только в публикационном режиме представь конкурирующие предпосылки; не используй Поппера/Куна/Лакатоса для простых data-point конфликтов.
+**Refinement cycle:** if results diverge at Stage 3, return to Stage 2 and add not a "beautiful method" but the missing operation:
+- Source conflict — check dates, definitions, primary sources, independence, and evidence access level.
+- Unconfirmed — formulate an operational verification criterion; if no criterion exists, verdict "unverifiable in this formulation".
+- Same-source echo — add lateral reading and find an independent source or explicitly mark as same-source echo.
+- Methodological dispute — only in publication mode present competing presuppositions; do not use Popper/Kuhn/Lakatos for simple data-point conflicts.
 
-### Слой 1. Операциональные методы (все режимы)
+### Layer 1. Operational methods (all modes)
 
-**SIFT (Колфилд, 2019).** Остановись, проверь источник, найди лучшее покрытие, проследи до первоисточника.
+**SIFT (Caulfield, 2019).** Stop, investigate the source, find better coverage, trace to the original.
 
-**Латеральное чтение (Wineburg & McGrew, 2017).** Проверяй источник извне: кто стоит за сайтом, что говорят другие, нет ли конфликта интересов. Не доверяй странице «О нас».
+**Lateral reading (Wineburg & McGrew, 2017).** Check the source from the outside: who is behind the site, what others say, is there a conflict of interest. Do not trust the "About us" page.
 
-**Первичный источник.** Предпочитай первичные. Вторичные независимые — когда первичный недоступен, конфликтует, или проверяется интерпретация, а не сырой факт.
+**Primary source.** Prefer primary sources. Secondary independent ones — when the primary is unavailable, conflicts, or the interpretation rather than raw fact is being checked.
 
-**Перекрёстная проверка.** При расхождении — ищи третий, независимый источник.
+**Cross-checking.** If results diverge — find a third, independent source.
 
-**Fermi-оценка.** Прикинь порядок величины до поиска. «10 млрд пользователей» — невозможно. Метод назван по имени Энрико Ферми, популяризирован Бергстромом и Уэстом (Calling Bullshit, 2020).
+**Fermi estimate.** Estimate the order of magnitude before searching. "10 billion users" — impossible. Named after Enrico Fermi, popularized by Bergstrom and West (Calling Bullshit, 2020).
 
-**Фрейминг.** «90% выживаемость» vs «10% летальность» — одно и то же число. Проверяй формулировку, не только число.
+**Framing.** "90% survival rate" vs "10% mortality" — the same number. Check the framing, not just the number.
 
-**Проверка цитат.** Открой оригинал доступным инструментом, сравни дословно. Проверь контекст: не вырвана ли цитата.
+**Quote verification.** Open the original with an available tool, compare verbatim. Check context: is the quote taken out of context?
 
-### Слой 2. Статистические методы (стандартный и публикационный режимы)
+### Layer 2. Statistical methods (standard and publication modes)
 
-Применяются **только** для утверждений с числовыми данными. Каждый метод имеет условия применимости — не применяй вслепую.
+Apply **only** to claims with numerical data. Each method has applicability conditions — do not apply blindly.
 
-**Размер эффекта (effect size).** Статистическая значимость (p-value) не означает практическую значимость. Разница в 0.1% может быть статистически значимой при N=100000, но бессмысленной на практике. Проверь: достаточно ли велика разница, чтобы иметь практические последствия?
-- Применим: когда есть количественный результат и можно оценить практическую значимость.
-- Не применим: когда нет порога значимости для данной области.
-- Что делать: указать, что практическая значимость не оценена.
+**Effect size.** Statistical significance (p-value) does not mean practical significance. A 0.1% difference can be statistically significant at N=100000 but meaningless in practice. Check: is the difference large enough to have practical consequences?
+- Applicable: when there is a quantitative result and practical significance can be assessed.
+- Not applicable: when there is no significance threshold for the given field.
+- What to do: state that practical significance was not assessed.
 
-**GRIM-тест.** Проверяет внутреннюю согласованность: если сообщается среднее значение для N респондентов, то произведение среднего на N должно давать целое число (если шкала целочисленная). Если не даёт — среднее, скорее всего, вычислено неверно или сфабриковано.
-- Применим: только для средних от целочисленных шкал с известным N.
-- Не применим: для нецелочисленных шкал, неизвестного N, процентов без указания базы.
+**GRIM test.** Checks internal consistency: if a mean is reported for N respondents, then the product of mean × N should yield an integer (if the scale is integer). If it doesn't — the mean was likely computed incorrectly or fabricated.
+- Applicable: only for means from integer scales with known N.
+- Not applicable: for non-integer scales, unknown N, percentages without a stated base.
 
-**Закон Бенфорда.** В подходящих естественных числовых данных (популяции, бюджеты, площади) первая цифра распределена неравномерно: 1 встречается примерно в 30% случаев, 9 — примерно в 5%. Отклонение — только скрининговый сигнал при выполненных условиях применимости, не доказательство манипуляции само по себе.
-- Применим: для естественных числовых данных большого масштаба (популяции, бюджеты).
-- Не применим: для ID, ограниченных диапазонов, цен с психологическим округлением, маленьких выборок (< 100).
+**Benford's law.** In suitable natural numerical data (populations, budgets, areas) the leading digit is distributed unevenly: 1 appears about 30% of the time, 9 — about 5%. Deviation is only a screening signal when applicability conditions are met, not proof of manipulation by itself.
+- Applicable: for natural large-scale numerical data (populations, budgets).
+- Not applicable: for IDs, bounded ranges, prices with psychological rounding, small samples (< 100).
 
-**Алгоритм при отклонении:**
-1. Проверь условия применимости (N > 100, естественные данные, не ID, не ограниченный диапазон). Если условия не выполнены, сигнал ложный — остановись.
-2. Если условия выполнены, проверяй альтернативные объяснения: маленькая выборка, психологическое округление, узкий диапазон, пороговые значения.
-3. Если альтернативы не объясняют, помечай в отчёте: «распределение первых цифр отклоняется от закона Бенфорда. Возможная причина: [варианты]. Не является доказательством манипуляции».
-4. Не пиши «данные сфабрикованы» на основании одного Бенфорда без дополнительных свидетельств.
+**Algorithm on deviation:**
+1. Check applicability conditions (N > 100, natural data, not IDs, not bounded range). If conditions are not met, the signal is false — stop.
+2. If conditions are met, check alternative explanations: small sample, psychological rounding, narrow range, threshold values.
+3. If alternatives do not explain, mark in report: "leading digit distribution deviates from Benford's law. Possible cause: [options]. Not proof of manipulation."
+4. Do not write "data fabricated" based on Benford's alone without additional evidence.
 
-**Байес / базовые частоты.** Для прогнозов: какова базовая вероятность из прошлых прогнозов аналогичного типа? Положительный тест при редком событии не означает высокую вероятность. Пример: «рынок вырастет в 3 раза» — если из 10 прошлых прогнозов на рост в 3 раза сбылся 1, базовая вероятность 10%. Авторитетный источник не означает подтверждение.
-- Применим: когда есть данные о базовой частоте.
-- Не применим: когда базовая частота неизвестна — не придумывай числа. Укажи: «базовая частота неизвестна, прогностическая оценка ненадёжна».
+**Bayes / base rates.** For predictions: what is the base probability from past forecasts of a similar type? A positive test for a rare event does not mean high probability. Example: "the market will grow 3x" — if 1 out of 10 past 3x growth forecasts came true, base probability is 10%. An authoritative source does not mean confirmation.
+- Applicable: when base rate data exists.
+- Not applicable: when base rate is unknown — do not invent numbers. State: "base rate unknown, forecast estimate unreliable."
 
-### Слой 3. Защитные механизмы (все режимы)
+### Layer 3. Protective mechanisms (all modes)
 
-**Анти-галлюцинация.** Проверь: (1) источник существует — найди через поиск, не доверяй памяти модели, (2) цитата точная — открой оригинал, (3) цифра из оригинала — проверь контекст.
+**Anti-hallucination.** Check: (1) the source exists — find via search, do not trust model memory, (2) the quote is accurate — open the original, (3) the number is from the original — check context.
 
-**Анти-угодливость.** Сформулируй позицию пользователя, найди факты против, сравни. Если факты противоречат — явно укажи расхождение.
+**Anti-sycophancy.** Formulate the user's position, find facts against it, compare. If facts contradict — explicitly indicate the discrepancy.
 
-**Лёгкая цепочка верификации.** Для собственных выводов агента: сформулируй один проверочный вопрос, ответ на который мог бы изменить вердикт; проверь его независимо от черновика; исправь вывод при расхождении. Полный CoVe используй только для публикационного режима.
+**Light verification chain.** For agent's own conclusions: formulate one verification question whose answer could change the verdict; check it independently of the draft; correct the conclusion if they diverge. Use full CoVe only for publication mode.
 
-### Слой 4. Эпистемические рамки (редко, только публикационный режим)
+### Layer 4. Epistemic frameworks (rarely, publication mode only)
 
-**Поппер (фальсификационизм).** Используй как технику поиска условий, ослабляющих тезис, а не как ярлык в отчёте. Для абсолютных утверждений подтверждённый контрпример может опровергнуть тезис; для вероятностных и контекстных — снижает уверенность или требует уточнения.
+**Popper (falsificationism).** Use as a technique for finding conditions that weaken the thesis, not as a label in the report. For absolute claims, a confirmed counterexample can refute the thesis; for probabilistic and contextual claims it reduces confidence or requires clarification.
 
-**Лакатос (исследовательские программы).** При конфликте теорий оцени: одна сторона предсказывает новые, ранее неизвестные факты (прогрессивная программа), а другая каждый раз подгоняет объяснение постфактум (вырождающаяся программа). Пример: «компания объясняет каждый провал форс-мажором» — вырождающаяся программа.
+**Lakatos (research programs).** When theories conflict, assess: does one side predict new, previously unknown facts (progressive program), while the other constantly adjusts explanations post hoc (degenerative program). Example: "the company explains every failure as force majeure" — degenerative program.
 
-**Кун (парадигмы).** При конфликте источников — покажи обе позиции как разные системы координат, не своди к общему знаменателю. Результат: для каждой позиции укажи (1) какую предпосылку она принимает, (2) какие факты объясняет, (3) какие не может объяснить.
+**Kuhn (paradigms).** When sources conflict — show both positions as different coordinate systems, do not reduce to a common denominator. Result: for each position indicate (1) what presupposition it accepts, (2) what facts it explains, (3) what facts it cannot explain.
 
-**Операционный критерий.** Если утверждение нельзя проверить через наблюдаемый результат — это не факт в текущей формулировке. Сформулируй конкретный критерий: что именно проверяется и какой результат подтвердит или опровергнет. Пример: «термин устоялся» — критерий: есть академические публикации, стандарты, словарная/энциклопедическая фиксация или устойчивое употребление в профильных источниках. Не можешь сформулировать критерий — вердикт «непроверяемо в данной формулировке».
+**Operational criterion.** If a claim cannot be verified through an observable result — it is not a fact in the current formulation. Formulate a specific criterion: what exactly is being checked and what result would confirm or refute it. Example: "the term is established" — criterion: there are academic publications, standards, dictionary/encyclopedia fixation, or stable usage in specialized sources. Cannot formulate a criterion — verdict "unverifiable in this formulation".
 
-⚠️ **Не применяй эпистемические рамки к простым проверкам.** Они уместны только при проверке научных и методологических утверждений, где невозможно дать однозначный ответ без позиции в научном споре.
+⚠️ **Do not apply epistemic frameworks to simple checks.** They are appropriate only when verifying scientific and methodological claims where an unambiguous answer is impossible without a position in a scientific dispute.
 
-**Критерии завершения этапа 2:** для каждого утверждения выбран набор методов в соответствии с режимом и типом, выбор обоснован.
+**Stage 2 completion criteria:** for each claim, a set of methods is selected according to mode and type, selection is justified.
 
-## Этап 3. Проверка
+## Stage 3. Verification
 
-### Поиск источников
+### Source search
 
-Начинай с источника, который прямо может подтвердить или опровергнуть утверждение: реестр, закон, оригинальная публикация, карточка объекта, архив, исходный документ.
+Start with a source that can directly confirm or refute the claim: registry, law, original publication, object card, archive, source document.
 
-Используй **два независимых пути обнаружения**, если первичный источник недоступен, неполон, заинтересован или нужен внешний контекст. Примеры:
+Use **two independent discovery paths** if the primary source is unavailable, incomplete, has a stake, or external context is needed. Examples:
 
-1. Официальный реестр + общий поиск.
-2. Первичный документ + архивная копия.
-3. Русскоязычный/локальный запрос + международный или исходно-языковой запрос.
-4. Сайт источника + латеральный поиск об источнике.
+1. Official registry + general search.
+2. Primary document + archival copy.
+3. Russian-language/local query + international or original-language query.
+4. Source website + lateral search about the source.
 
-Если доступен навык `yandex-search`, можно использовать российский и международный контуры (`SEARCH_TYPE_RU` / `SEARCH_TYPE_COM`), но не выполняй два поиска ритуально, когда один первичный источник полностью закрывает простое утверждение. Извлекай контент доступными web/browser/архивными инструментами и помечай уровень доступа к доказательству.
+Extract content using available web/browser/archival tools and mark the evidence access level.
 
-Если задача выходит за рамки проверки фактов (комплексное исследование, сравнительный анализ, синтез из множества источников) — передай в подходящий навык исследования.
+If the task goes beyond fact-checking (complex research, comparative analysis, synthesis from multiple sources) — delegate to a research skill.
 
-### Принцип primary-source-first
+### Primary-source-first principle
 
-Предпочитай первичные источники: arXiv paper — сама статья, GitHub repo — сам репозиторий, API docs — официальная документация, закон/стандарт — текст закона/стандарта. Два пересказа не делают факт надёжнее, если оба ссылаются на один первоисточник.
+Prefer primary sources: arXiv paper — the article itself, GitHub repo — the repository itself, API docs — official documentation, law/standard — the text of the law/standard. Two retellings do not make a fact more reliable if both cite the same primary source.
 
-### Иерархия и независимость источников
+### Source hierarchy and independence
 
-Перед засчитыванием «подтверждено 2+ источниками» проверь: есть ли общий первоисточник? Независимое подтверждение или перепечатка? Есть ли конфликт интересов? Источник сообщает факт сам или цитирует другого?
+Before counting "confirmed by 2+ sources" check: is there a common primary source? Independent confirmation or reprint? Is there a conflict of interest? Does the source report the fact itself or quote someone else?
 
-Различай уровни доказательств (**только в стандартном и публикационном режимах**):
+Distinguish evidence levels (**standard and publication modes only**):
 
-- **A. Официальный машинно-проверяемый источник** — реестр, закон, стандарт, DOI, WHOIS, API, карточка в базе.
-- **B. Оригинальный документ или скан с провенансом** — приказ, письмо, фотография, архивная копия с понятным происхождением.
-- **C. Авторский self-report** — участник/организация сообщает о себе; подтверждает факт заявления, но не всегда внешний факт.
-- **D. Независимый вторичный источник** — СМИ, исследование, каталог, справочник без общего первоисточника и конфликта интересов.
-- **E. Эхо одного источника / цитатник / поисковый сниппет** — не считается независимым подтверждением.
-- **internal** — внутренний источник (стенограмма, мемо, knowledge-файл, issue). Первичен для факта «участник X сообщил Y». Не независим для внешнего факта.
+- **A. Official machine-verifiable source** — registry, law, standard, DOI, WHOIS, API, database record.
+- **B. Original document or scan with provenance** — order, letter, photograph, archival copy with clear origin.
+- **C. Author's self-report** — participant/organization reports about itself; confirms the fact of the statement, but not always the external fact.
+- **D. Independent secondary source** — media, research, catalog, directory without a common primary source and conflict of interest.
+- **E. Same-source echo / quote aggregator / search snippet** — does not count as independent confirmation.
+- **internal** — internal source (transcript, memo, knowledge file, issue). Primary for the fact "participant X reported Y". Not independent for an external fact.
 
-Различай:
-- **Подтверждение первоисточником** — факт подтверждён источником уровня A/B.
-- **Независимое подтверждение** — два независимых источника уровня D или выше подтверждают.
-- **Эхо одного источника** — несколько источников пересказывают один и тот же — не считается независимым подтверждением.
+Distinguish:
+- **Primary source confirmation** — fact confirmed by a level A/B source.
+- **Independent confirmation** — two independent sources of level D or above confirm.
+- **Same-source echo** — multiple sources retell the same original — does not count as independent confirmation.
 
-В быстром режиме иерархию A–E не требовать — достаточно «подтверждено / не подтверждено».
+In quick mode, do not require A–E hierarchy — "confirmed / unconfirmed" is sufficient.
 
-### Уровень доступа к доказательству (**только стандартный и публикационный режимы**)
+### Evidence access level (**standard and publication modes only**)
 
-Для каждого существенного источника помечай, что реально было доступно:
+For each substantive source, mark what was actually accessible:
 
-- **полный текст открыт** — прочитан оригинал/страница/документ;
-- **метаданные открыты** — доступна карточка, дата, заголовок, автор, но не полный текст;
-- **поисковый сниппет** — видна только выдача; использовать как слабое доказательство и явно помечать;
-- **изображение/OCR** — текст прочитан с изображения; указать риск ошибки распознавания;
-- **недоступно/paywall/блокировка** — не засчитывать как подтверждение без альтернативы.
+- **full text open** — original/page/document was read;
+- **metadata open** — card, date, title, author accessible, but not full text;
+- **search snippet** — only SERP output visible; use as weak evidence and explicitly mark;
+- **image/OCR** — text read from image; indicate recognition error risk;
+- **unavailable/paywall/blocked** — do not count as confirmation without an alternative.
 
-### Проверка статей и лонгридов
+### Article and longread verification
 
-Для длинного материала не проверяй каждую мелочь подряд. Выдели 5–10 существенных утверждений, которые влияют на вывод или могут навредить при ошибке. Отдельно проверь:
+For long materials, do not check every detail. Identify 5–10 substantive claims that affect the conclusion or could cause harm if wrong. Separately check:
 
-1. ссылки и битые URL;
-2. даты публикации/обновления;
-3. цитаты и атрибуции;
-4. числа и сильные сравнения;
-5. скриншоты/изображения и их провенанс;
-6. личные воспоминания: помечай как self-report, если нет внешнего следа;
-7. внутренние источники проекта: они первичны для «автор утверждает», но не независимы для внешнего факта.
+1. links and broken URLs;
+2. publication/update dates;
+3. quotes and attributions;
+4. numbers and strong comparisons;
+5. screenshots/images and their provenance;
+6. personal recollections: mark as self-report if no external trace exists;
+7. internal project sources: primary for "author asserts", but not independent for external facts.
 
-### Проверка научных и технических утверждений
+### Scientific and technical claim verification
 
-Для научных и технических утверждений — отдельный порядок: (1) проверь метаданные публикации (авторы, дата, журнал), (2) сравни аннотацию с формулировкой, (3) проверь таблицы и приложения на числа, (4) проверь доступность кода и данных, (5) проверь статус рецензирования, (6) проверь доверительные интервалы, (7) различай прямое измерение и оценку по модели.
+For scientific and technical claims — a separate procedure: (1) check publication metadata (authors, date, journal), (2) compare abstract with claim formulation, (3) check tables and appendices for numbers, (4) check code and data availability, (5) check peer review status, (6) check confidence intervals, (7) distinguish direct measurement from model-based estimate.
 
 ### False rigor rule
 
-**Не называй метод, если не применил его конкретно и не можешь указать результат.**
+**Do not name a method if you did not apply it specifically and cannot state the result.**
 
-Плохо: «Используя попперовскую фальсификацию, утверждение правдоподобно.»
-Хорошо: «Поиск опровергающих данных: X, Y. Найдено Z, что ослабляет утверждение.»
+Bad: "Using Popperian falsification, the claim is plausible."
+Good: "Search for refuting data: X, Y. Found Z, which weakens the claim."
 
-**Критерии завершения этапа 3:** каждое утверждение проверено выбранными методами, источники указаны с датами, галлюцинации выявлены и исправлены.
+**Stage 3 completion criteria:** each claim verified by selected methods, sources indicated with dates, hallucinations identified and corrected.
 
-## Этап 4. Классификация
+## Stage 4. Classification
 
-### Вердикты
+### Verdicts
 
-Присвой каждому утверждению один из вердиктов:
+Assign each claim one of the verdicts:
 
-- **Подтверждено** (✅) — подтверждён надёжным первоисточником или независимыми источниками
-- **Частично подтверждено** (⚠️) — верно по сути, но с оговорками: неточные числа, иной контекст, упущенные условия
-- **Не подтверждено** (❓) — недостаточно данных для подтверждения или опровержения
-- **Противоречие** (🔴) — источники расходятся
-- **Опровергнуто** (❌) — доказательно неверно
-- **Вводит в заблуждение** (⛔) — формально не ложь, но искажает: вырванный контекст, выборка-подгонка (cherry-picking), ложная рамка
-- **Непроверяемо в данной формулировке** (◻️) — метафора, оценка, расплывчатая формулировка или утверждение без операционного критерия
+- **Confirmed** (✅) — confirmed by a reliable primary source or independent sources
+- **Partially confirmed** (⚠️) — correct in essence but with caveats: inaccurate numbers, different context, omitted conditions
+- **Unconfirmed** (❓) — insufficient data for confirmation or refutation
+- **Contradiction** (🔴) — sources diverge
+- **Refuted** (❌) — provably false
+- **Misleading** (⛔) — technically not a lie but distorts: out-of-context quoting, cherry-picking, false framing
+- **Unverifiable in this formulation** (◻️) — metaphor, evaluation, vague formulation, or claim without an operational criterion
 
 ### Uncertainty
 
-Для каждого вердикта укажи: **Уровень достоверности** (высокий / средний / низкий), **Уровень источника** (A–E или первичный / вторичный / косвенный / отсутствует), **Уровень доступа** (полный текст / метаданные / сниппет / OCR / недоступно), **Оговорки** (что может изменить вердикт), **Неучтённое** (чего не проверили).
+For each verdict indicate: **Confidence level** (high / medium / low), **Source level** (A–E or primary / secondary / indirect / absent), **Access level** (full text / metadata / snippet / OCR / unavailable), **Caveats** (what could change the verdict), **Not checked** (what was not verified).
 
-Укажи источники с датами публикации.
+Indicate sources with publication dates.
 
-**Критерии завершения этапа 4:** все утверждения классифицированы с вердиктом, уровнем достоверности и источниками с датами.
+**Stage 4 completion criteria:** all claims classified with verdict, confidence level, and sources with dates.
 
-## Этап 5. Синтез
+## Stage 5. Synthesis
 
-### Быстрый режим
+### Quick mode
 
-Выдай вердикт в 1–3 предложения с источником.
+Deliver verdict in 1–3 sentences with source.
 
-### Стандартный и публикационный режимы
+### Standard and publication modes
 
-Собери отчёт по шаблону:
+Compile report using template:
 
-**Краткий вердикт** — 1–3 предложения: что проверялось, общий результат.
+**Brief verdict** — 1–3 sentences: what was checked, overall result.
 
-**Проверка утверждений** — для каждого: точная формулировка, интерпретация (буквальная/риторическая/оценочная), тип, критерий подтверждения/опровержения, источники с датами, уровень источника и доступа, вердикт, достоверность, оговорки.
+**Claim verification** — for each: exact formulation, interpretation (literal/rhetorical/evaluative), type, confirmation/refutation criterion, sources with dates, source level and access, verdict, confidence, caveats.
 
-**Ключевые проблемы** — преувеличения (что преувеличено), упущенный контекст (какой контекст упущен), неподтверждённые допущения (какие допущения не подтверждены).
+**Key issues** — exaggerations (what is exaggerated), missing context (what context is missing), unconfirmed assumptions (which assumptions are unconfirmed).
 
-**Предложенная корректировка** — переформулированные утверждения с учётом проверки.
+**Suggested correction** — reformulated claims accounting for verification.
 
-При конфликте источников — покажи обе позиции, не своди к общему знаменателю. Оцени «исследовательскую программу» (Лакатос) только в публикационном режиме и только при конфликте между конкурирующими методологическими позициями, а не при расхождении данных.
+When sources conflict — show both positions, do not reduce to a common denominator. Assess the "research program" (Lakatos) only in publication mode and only when there is a conflict between competing methodological positions, not when data points diverge.
 
-**Критерии завершения этапа 5:** пробелы отмечены, конфликты не сглажены, результат сформирован по шаблону.
+**Stage 5 completion criteria:** gaps noted, conflicts not smoothed over, result compiled using template.
 
-## Этап 6. Архивирование
+## Stage 6. Archiving
 
-### 6.1. Артефакты
+### 6.1. Artifacts
 
-Итоговый комплект: отчёт фактчекинга с вердиктами, источниками и оговорками.
+Final deliverable: fact-checking report with verdicts, sources, and caveats.
 
-### 6.2. Сохранение
+### 6.2. Saving
 
-Сохрани отчёт в подходящую директорию проекта.
+Save the report to an appropriate project directory.
 
-### 6.3. Обновление индексов
+### 6.3. Index updates
 
-Обнови индексы проекта при необходимости.
+Update project indexes as needed.
 
-**Критерии завершения этапа 6:** отчёт сохранён, frontmatter валиден.
+**Stage 6 completion criteria:** report saved, frontmatter valid.
 
 ## References
 
-- `references/methodologies.md` — подробное описание каждого метода
-- `references/applicability-matrix.md` — матрица «тип утверждения × метод × слой»
-- `references/fact-checking-theory.md` — философский контекст: Тьюринг, Поппер, Лакатос, Кун
-
+- `references/methodologies.md` — detailed description of each method
+- `references/applicability-matrix.md` — "claim type × method × layer" matrix
+- `references/fact-checking-theory.md` — philosophical context: Turing, Popper, Lakatos, Kuhn

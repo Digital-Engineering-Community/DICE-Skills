@@ -1,74 +1,74 @@
 ---
-title: "Матрица применимости методов фактчекинга"
+title: "Fact-Checking Method Applicability Matrix"
 ---
 
-# Матрица применимости методов
+# Method Applicability Matrix
 
-Тип утверждения — методы по слоям. Слои активируются по режиму (быстрый / стандартный / публикационный) и risk gate из `SKILL.md`.
+Claim type — methods by layers. Layers are activated by mode (quick / standard / publication) and risk gate from `SKILL.md`.
 
-## Слой 1. Операциональные (все режимы)
+## Layer 1. Operational (all modes)
 
-| Тип | SIFT | Первичный источник | Перекрёстная проверка | Латеральное чтение | Fermi-оценка | Фрейминг | Проверка цитат |
-|-----|------|---------------------|----------------------|---------------------|--------------|----------|----------------|
-| Цифра-простая | ✅ | ✅ | ✅ | — | ✅ быстро | ✅ | — |
-| Цифра-статистика | ✅ | ✅ | ✅ | ✅ | ✅ быстро | ✅ | — |
-| Статус | ✅ быстрый | ✅ | ✅ | ✅ | — | — | — |
-| Причина | ✅ | ✅ | ✅ | ✅ при конфликте | — | ✅ | — |
-| Прогноз | ✅ | ✅ | ✅ | ✅ | ✅ обязательно | ✅ | — |
-| Методология | ✅ | ✅ | ✅ | ✅ | — | ✅ | — |
-| Цитата | — | ✅ обязательно | — | — | — | — | ✅ обязательно |
-| Атрибуция | ✅ | ✅ | ✅ при споре | ✅ | — | — | — |
-| Существование | ✅ | ✅ обязательно | — | — | — | — | — |
-| Сравнение | ✅ | ✅ | ✅ | ✅ при конфликте | ✅ при масштабе | ✅ обязательно | — |
-| Нормативное | — | ✅ обязательно | ✅ при версиях | — | — | — | — |
-| Научный результат | ✅ | ✅ | ✅ | ✅ | ✅ для sanity-check | ✅ | — |
-| Собственный вывод | — | — | — | — | ✅ если численный | ✅ | — |
-| Историко-личное | ✅ | ✅ self-report/архив | ✅ внешний след | ✅ | — | — | — |
-| Провенанс источника | ✅ | ✅ обязательно | ✅ архив/реестр | ✅ | — | — | ✅ если текстовый документ |
+| Type | SIFT | Primary source | Cross-checking | Lateral reading | Fermi estimate | Framing | Quote verification |
+|------|------|----------------|----------------|-----------------|----------------|---------|-------------------|
+| Simple figure | ✅ | ✅ | ✅ | — | ✅ quick | ✅ | — |
+| Statistics | ✅ | ✅ | ✅ | ✅ | ✅ quick | ✅ | — |
+| Status | ✅ quick | ✅ | ✅ | ✅ | — | — | — |
+| Causation | ✅ | ✅ | ✅ | ✅ on conflict | — | ✅ | — |
+| Prediction | ✅ | ✅ | ✅ | ✅ | ✅ required | ✅ | — |
+| Methodology | ✅ | ✅ | ✅ | ✅ | — | ✅ | — |
+| Quote | — | ✅ required | — | — | — | — | ✅ required |
+| Attribution | ✅ | ✅ | ✅ on dispute | ✅ | — | — | — |
+| Existence | ✅ | ✅ required | — | — | — | — | — |
+| Comparison | ✅ | ✅ | ✅ | ✅ on conflict | ✅ at scale | ✅ required | — |
+| Normative | — | ✅ required | ✅ on versions | — | — | — | — |
+| Scientific result | ✅ | ✅ | ✅ | ✅ | ✅ sanity-check | ✅ | — |
+| Agent's own conclusion | — | — | — | — | ✅ if numerical | ✅ | — |
+| Historical-personal | ✅ | ✅ self-report/archive | ✅ external trace | ✅ | — | — | — |
+| Source provenance | ✅ | ✅ required | ✅ archive/registry | ✅ | — | — | ✅ if text document |
 
-## Слой 2. Статистические (стандартный и публикационный режимы)
+## Layer 2. Statistical (standard and publication modes)
 
-Только для утверждений с числовыми данными. Каждый метод — с условиями применимости.
+Only for claims with numerical data. Each method has applicability conditions.
 
-| Тип | Размер эффекта | GRIM-тест | Закон Бенфорда | Байес / базовые частоты |
-|-----|----------------|-----------|----------------|------------------------|
-| Цифра-простая | — | — | — | — |
-| Цифра-статистика | ✅ если есть порог значимости | ✅ целочисленные шкалы, известный N | ✅ большие естественные данные | — |
-| Прогноз | — | — | — | ✅ если есть базовая частота |
-| Сравнение | ✅ | — | — | ✅ если сравнивается вероятность |
-| Научный результат | ✅ | ✅ при применимости | — | ✅ при заявлении вероятности |
-| Собственный вывод | — | — | — | ✅ если есть базовая частота |
+| Type | Effect size | GRIM test | Benford's law | Bayes / base rates |
+|------|-------------|-----------|---------------|-------------------|
+| Simple figure | — | — | — | — |
+| Statistics | ✅ if significance threshold exists | ✅ integer scales, known N | ✅ large natural data | — |
+| Prediction | — | — | — | ✅ if base rate exists |
+| Comparison | ✅ | — | — | ✅ if comparing probability |
+| Scientific result | ✅ | ✅ if applicable | — | ✅ if probability claimed |
+| Agent's own conclusion | — | — | — | ✅ if base rate exists |
 
-Условия применимости:
-- **Размер эффекта** — применим, когда есть количественный результат и порог значимости для данной области. Без порога — указать «не оценена».
-- **GRIM-тест** — только для средних от целочисленных шкал с известным N.
-- **Закон Бенфорда** — только для подходящих больших естественных наборов. Отклонение — скрининговый сигнал, не доказательство манипуляции.
-- **Байес** — не применим, если базовая частота неизвестна. Не придумывать числа.
+Applicability conditions:
+- **Effect size** — applicable when there is a quantitative result and a significance threshold for the field. Without a threshold — state "not assessed".
+- **GRIM test** — only for means from integer scales with known N.
+- **Benford's law** — only for suitable large natural datasets. Deviation is a screening signal, not proof of manipulation.
+- **Bayes** — not applicable if base rate is unknown. Do not invent numbers.
 
-## Слой 3. Защитные (все режимы)
+## Layer 3. Protective (all modes)
 
-| Тип | Анти-галлюцинация | Анти-угодливость | Лёгкая цепочка верификации |
-|-----|-------------------|------------------|----------------------------|
-| Все типы | ✅ | ✅ при расхождении с позицией пользователя | — |
-| Собственный вывод | ✅ обязательно | ✅ обязательно | ✅ обязательно |
-| Источник уровня E / сниппет / OCR | ✅ обязательно | — | ✅ обязательно |
-| Публикационный материал | ✅ обязательно | ✅ обязательно | ✅ минимум для ключевых выводов |
+| Type | Anti-hallucination | Anti-sycophancy | Light verification chain |
+|------|--------------------|-----------------|--------------------------|
+| All types | ✅ | ✅ on discrepancy with user position | — |
+| Agent's own conclusion | ✅ required | ✅ required | ✅ required |
+| Level E source / snippet / OCR | ✅ required | — | ✅ required |
+| Publication material | ✅ required | ✅ required | ✅ minimum for key conclusions |
 
-## Слой 4. Эпистемические (редко, только публикационный режим)
+## Layer 4. Epistemic (rarely, publication mode only)
 
-| Ситуация | Что делать |
-|----------|------------|
-| Методологический спор | Явно описать конкурирующие предпосылки и критерии оценки |
-| Научный результат без консенсуса | Показать статус публикации, ограничения, альтернативные объяснения |
-| Конфликт рамок, а не данных | Представить позиции отдельно, не сводить к ложному консенсусу |
-| Простая проверка факта / даты / цитаты | Не применять эпистемические рамки |
+| Situation | What to do |
+|-----------|------------|
+| Methodological dispute | Explicitly describe competing presuppositions and evaluation criteria |
+| Scientific result without consensus | Show publication status, limitations, alternative explanations |
+| Frame conflict, not data conflict | Present positions separately, do not reduce to false consensus |
+| Simple fact / date / quote check | Do not apply epistemic frameworks |
 
-⚠️ Не применять в быстром и стандартном режимах без явной необходимости. Не писать «по Попперу/Куну/Лакатосу», если в отчёте нет конкретного результата этой операции.
+⚠️ Do not apply in quick and standard modes without explicit necessity. Do not write "per Popper/Kuhn/Lakatos" if the report contains no concrete result of that operation.
 
-## Когда расширять набор (цикл доработки)
+## When to expand the set (refinement cycle)
 
-При расхождении результатов на этапе 3 — вернись к этапу 2 и добавь недостающую операцию:
-- Конфликт источников — проверь даты, определения, первоисточники, независимость и уровень доступа.
-- Не подтверждено — сформулируй операционный критерий; если критерия нет, ставь «непроверяемо в данной формулировке».
-- Эхо одного источника — добавь латеральное чтение и ищи независимый источник.
-- Лонгрид — выдели только существенные утверждения и отдельно проверь ссылки/даты/скриншоты/провенанс.
+If results diverge at Stage 3 — return to Stage 2 and add the missing operation:
+- Source conflict — check dates, definitions, primary sources, independence, and access level.
+- Unconfirmed — formulate an operational criterion; if no criterion exists, mark "unverifiable in this formulation".
+- Same-source echo — add lateral reading and search for an independent source.
+- Longread — identify only substantive claims and separately check links/dates/screenshots/provenance.
