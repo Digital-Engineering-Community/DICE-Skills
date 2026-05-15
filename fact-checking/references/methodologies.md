@@ -1,29 +1,33 @@
-# Fact-Checking Methodologies: Sources and Descriptions
+---
+title: "Методологии фактчекинга: источники и описания"
+---
 
-Detailed descriptions of methods referenced in SKILL.md. Philosophical context (Turing, Popper, Lakatos, Kuhn) — in `fact-checking-theory.md`.
+# Методологии фактчекинга: источники и описания
 
-## SIFT (Mike Caulfield, 2019)
+Подробные описания методов, на которые ссылается SKILL.md. Философский контекст (Тьюринг, Поппер, Лакатос, Кун) — в отдельном knowledge-файле проекта.
 
-Four steps for rapid information assessment. Developed by Caulfield (Washington State University Vancouver at the time of publication, now UW Bothell).
+## SIFT (Майкл Колфилд, 2019)
 
-1. **Stop** — pause, do not react emotionally
-2. **Investigate the source** — who is behind the information?
-3. **Find better coverage** — find better coverage in authoritative sources
-4. **Trace to the original** — trace to the primary source
+Четыре шага для быстрой оценки информации. Разработан Колфилдом (на момент публикации — Washington State University Vancouver, ныне — UW Bothell).
 
-Resource: https://hapgood.us/2019/06/19/sift-the-four-moves/
+1. **Stop** — остановись, не реагируй эмоционально
+2. **Investigate the source** — кто стоит за информацией?
+3. **Find better coverage** — найди лучшее покрытие в авторитетных источниках
+4. **Trace to the original** — проследи до первоисточника
 
-## Lateral Reading (Wineburg & McGrew, Stanford, 2017)
+Ресурс: https://hapgood.us/2019/06/19/sift-the-four-moves/
 
-Fact-checkers do not read a page "in depth" — they go "laterally", seeking information about the resource itself. Study: 45 participants (10 fact-checkers, 10 historians, 25 students). Fact-checkers worked faster and more accurately than all others.
+## Lateral Reading (Wineburg & McGrew, Стэнфорд, 2017)
 
-Study: "Lateral Reading and the Nature of Expertise: Reading Less and Learning More", Stanford History Education Group, 2017. SSRN: 3048994.
+Фактчекеры не читают страницу «вглубь», а уходят «вбок» — ищут информацию о самом ресурсе. Исследование: 45 участников (10 фактчекеров, 10 историков, 25 студентов). Фактчекеры работали быстрее и точнее всех.
 
-Caulfield and Wineburg are co-authors of "Verified" (University of Chicago Press).
+Исследование: «Lateral Reading and the Nature of Expertise: Reading Less and Learning More», Stanford History Education Group, 2017. SSRN: 3048994.
+
+Колфилд и Вайнбург — соавторы книги «Verified» (University of Chicago Press).
 
 ## IFCN Code of Principles (Poynter Institute)
 
-International fact-checking standard. 31 criteria, 5 principles:
+Международный стандарт фактчекинга. 31 критерий, 5 принципов:
 
 1. Non-partisanship and Fairness
 2. Transparency of Sources
@@ -31,115 +35,173 @@ International fact-checking standard. 31 criteria, 5 principles:
 4. Transparency of Methodology
 5. Open & Honest Corrections
 
-Resource: https://ifcncodeofprinciples.poynter.org/
+Ресурс: https://ifcncodeofprinciples.poynter.org/
 
-## Calling Bullshit (Bergstrom & West, 2020)
+## Calling Bullshit (Бергстром и Уэст, 2020)
 
-Course and book (University of Washington). Key concepts: Brandolini's law (energy to refute >> energy to create bullshit), Fermi estimation, GRIM test, Benford's law, effect size, visual manipulations (truncated axes, violation of proportional ink).
+Курс и книга (University of Washington). Ключевые концепты: правило Брандолини (энергия на опровержение >> энергия на создание чуши), Fermi-оценка, GRIM-тест, закон Бенфорда, размер эффекта, визуальные манипуляции (обрезанные оси, нарушение proportional ink).
 
-Resource: https://www.callingbullshit.org/
+Ресурс: https://www.callingbullshit.org/
 
-## Statistical Fact-Checking
+## Статистический фактчекинг
 
-Methods for verifying numerical data, popularized by Bergstrom & West (Calling Bullshit, 2020):
+Методы проверки числовых данных, популяризированные Бергстромом и Уэстом (Calling Bullshit, 2020):
 
-- **Effect size** — is the result clinically significant? Statistical significance (p < 0.05) does not imply practical significance.
-- **GRIM test** — consistency check: do the mean, N, and proportions converge? If the mean is 4.3 with N=7 — it must be an integer * N / N.
-- **Benford's law** — distribution of leading digits in natural data: 1 appears ~30%, 9 — ~5%. Deviation is a sign of manipulation.
+- **Размер эффекта** — клинически значим ли результат? Статистическая значимость (p < 0.05) не означает практическую значимость.
+- **GRIM-тест** — проверка согласованности: сходятся ли среднее, N и доли? Если среднее 4.3 при N=7 — должно быть целое число * N / N.
+- **Закон Бенфорда** — распределение первых цифр в подходящих естественных данных: 1 появляется примерно в 30% случаев, 9 — примерно в 5%. Отклонение — только скрининговый сигнал при выполненных условиях применимости; само по себе не доказывает манипуляцию.
 
-## Anti-Sycophancy
+**Алгоритм при отклонении:**
+1. Проверь условия применимости (N > 100, естественные данные, не ID, не ограниченный диапазон). Если условия не выполнены, сигнал ложный — остановись.
+2. Если условия выполнены, проверяй альтернативные объяснения: маленькая выборка, психологическое округление, узкий диапазон, пороговые значения.
+3. Если альтернативы не объясняют, помечай в отчёте: «распределение первых цифр отклоняется от закона Бенфорда. Возможная причина: [варианты]. Не является доказательством манипуляции».
+4. Не пиши «данные сфабрикованы» на основании одного Бенфорда без дополнительных свидетельств.
 
-A method for detecting agreement with the user contrary to facts. Distinct from anti-hallucination: hallucination — the agent fabricated a fact, sycophancy — the agent found the fact but agreed with the user instead of challenging them.
+## Анти-sycophancy
 
-Method: formulate the user's position, find facts against this position via search, compare. If facts contradict — explicitly state the discrepancy, do not fit the conclusion.
+Метод обнаружения согласия с пользователем вопреки фактам. Отличается от анти-галлюцинации: галлюцинация — агент выдумал факт, sycophancy — агент нашёл факт, но согласился с пользователем вместо того чтобы его оспорить.
+
+Метод: сформулируй позицию пользователя, найди через поиск факты против этой позиции, сравни. Если факты противоречат — явно укажи расхождение, не подгоняй вывод.
 
 ## CoVe — Chain-of-Verification (Meta AI, 2023)
 
-AI-specific technique for reducing hallucinations:
+ИИ-специфичная методика для снижения галлюцинаций:
 
-1. Draft response — draft answer
-2. Plan verification questions — verification questions for the draft
-3. Answer independently — answer questions without the draft context
-4. Generate verified response — verified answer
+1. Draft response — черновик ответа
+2. Plan verification questions — проверочные вопросы к черновику
+3. Answer independently — ответы на вопросы без контекста черновика
+4. Generate verified response — проверенный ответ
 
-Study: Dhuliawala et al., "Chain-of-Verification Reduces Hallucination in Large Language Models", arXiv:2309.11495, 2023.
+Исследование: Dhuliawala et al., «Chain-of-Verification Reduces Hallucination in Large Language Models», arXiv:2309.11495, 2023.
 
-## Baloney Detection Kit (Carl Sagan, 1995)
+## Балoney Detection Kit (Карл Саган, 1995)
 
-Chapter "The Fine Art of Baloney Detection" from "The Demon-Haunted World" (first edition — 1995, Random House). A toolkit: independent confirmation, multiple hypotheses, Occam's razor, quantitative estimates, checking every link in the argumentation.
+Глава «The Fine Art of Baloney Detection» из книги «The Demon-Haunted World» (первое издание — 1995, Random House). Набор инструментов: независимое подтверждение, множество гипотез, бритва Оккама, количественные оценки, проверка каждого звена аргументации.
 
-## Critical Thinking (Tom Chatfield, Oxford)
+## Критическое мышление (Том Чэтфилд, Оксфорд)
 
-Anchoring, framing, Bayes' theorem, base rate fallacy. Separate framing from content.
+Anchoring, framing, теорема Байеса, ошибка базовой частоты. Отделять формулировку от содержания.
 
-## Anatomy of Delusions (Nikita Nepryakhin, Alpina)
+## Анатомия заблуждений (Никита Непряхин, Альпина)
 
-Form of presentation ≠ content. Cognitive biases, logic, argumentation.
+Форма подачи ≠ содержание. Когнитивные искажения, логика, аргументация.
 
-## KlemGU Algorithm (Komleva & Solomin, 2022)
+## Алгоритм КлемГУ (Комлева и Соломин, 2022)
 
-Unified fact-checking algorithm for online media journalists. Verification: proper names, sources, quotes, details, visual elements.
+Единый алгоритм фактчекинга для журналистов сетевых СМИ. Проверка: имена собственные, источники, цитаты, детали, визуальные элементы.
 
-Source: Komleva V.Yu., Solomin V.E., "Virtual Communication and Social Networks", 2022, 1(4): 167-171.
+Источник: Комлева В.Ю., Соломин В.Е., «Виртуальная коммуникация и социальные сети», 2022, 1(4): 167-171.
 
 ---
 
-## v6 Additions
+## Дополнения v6
 
-The following methods and principles were introduced in v6.0 of the skill and are documented here for completeness.
+Следующие методы и принципы введены в v6.0+ навыка и документированы здесь для полноты.
 
-### Primary-Source-First Principle
+### Принцип primary-source-first
 
-Prefer primary sources over secondary retellings. An arXiv paper — the paper itself, not a blog summary. A GitHub repo — the repo, not a news article about it. A law or standard — the official text.
+Предпочитай первичные источники вторичным пересказам. ArXiv paper — сама статья, не блог-конспект. GitHub repo — сам репозиторий, не новость о нём. Закон или стандарт — официальный текст.
 
-Two retellings do not make a fact more reliable if both cite the same primary source. See also "Same-source echo" below.
+Два пересказа не делают факт надёжнее, если оба ссылаются на один первоисточник. См. также «Эхо одного источника» ниже.
 
-### Source Independence and Same-Source Echo
+### Иерархия источников и уровень доступа
 
-Before counting "confirmed by 2+ sources", check whether sources share a common primary origin:
+Для production-фактчекинга одного деления на «первичный / вторичный» недостаточно. Фиксируй два измерения.
 
-- **Primary-source confirmation** — fact confirmed by the primary source directly.
-- **Independent corroboration** — two sources confirm independently, without sharing an origin.
-- **Same-source echo** — multiple sources retell the same original source. Does not count as independent confirmation.
+**Уровень источника (только стандартный и публикационный режимы):**
 
-Also check for conflict of interest: does the source report the fact itself, or cite someone else?
+- **A. Официальный машинно-проверяемый источник** — реестр, закон, стандарт, DOI, WHOIS, API, карточка в базе.
+- **B. Оригинальный документ или скан с провенансом** — приказ, письмо, фотография, архивная копия с понятным происхождением.
+- **C. Авторский self-report** — участник/организация сообщает о себе; подтверждает факт заявления, но не всегда внешний факт.
+- **D. Независимый вторичный источник** — СМИ, исследование, каталог, справочник без общего первоисточника и конфликта интересов.
+- **E. Эхо одного источника / цитатник / поисковый сниппет** — не считается независимым подтверждением.
+- **internal** — внутренний источник (стенограмма, мемо, knowledge-файл, issue). Первичен для факта «участник X сообщил Y». Не независим для внешнего факта.
 
-### Quote Verification
+В быстром режиме иерархию A–E не требовать — достаточно «подтверждено / не подтверждено».
 
-Open the original document, compare verbatim. Check context: is the quote taken out of context? Is the attribution correct? Does the surrounding text change the meaning?
+**Уровень доступа (только стандартный и публикационный режимы):** полный текст открыт / метаданные открыты / поисковый сниппет / изображение или OCR / недоступно.
 
-Applicable to claim type "quote" — always required in all modes.
+Если использован только сниппет или OCR, это надо явно написать в отчёте: агент не должен выдавать такой источник за полноценно проверенный оригинал.
 
-### Scientific and Technical Claim Verification
+### Независимость источников и эхо
 
-Separate workflow for scientific/technical claims:
+Перед засчитыванием «подтверждено 2+ источниками» проверь, есть ли общий первоисточник:
 
-1. Check paper metadata (authors, date, journal)
-2. Compare abstract with the claim formulation
-3. Check tables/appendix for specific numbers
-4. Check code and data availability
-5. Check peer review status
-6. Check confidence intervals
-7. Distinguish direct measurement from model-derived estimate
+- **Подтверждение первоисточником** — факт подтверждён первоисточником напрямую.
+- **Независимое подтверждение** — два источника подтверждают независимо, без общей основы.
+- **Эхо одного источника** — несколько источников пересказывают один и тот же оригинал. Не считается независимым подтверждением.
 
-### False Rigor Rule
+Также проверяй конфликт интересов: источник сам сообщает факт или цитирует кого-то?
 
-Do not name a method if you have not applied it concretely and cannot state the result.
+### Буквальное, риторическое и художественное
 
-Bad: "Using Popperian falsification, the claim is plausible."
-Good: "Search for disconfirming evidence: X, Y. Found Z, which weakens the claim."
+Перед проверкой спорной фразы определи режим её использования:
 
-### Uncertainty, Confidence, and Caveats
+- цитата — проверить источник, дословность и атрибуцию;
+- художественный образ / метафора / шутка — не проверять как факт, если пользователь не просит буквальную проверку;
+- буквальное утверждение — сформулируй операционный критерий и проверяй как обычное утверждение.
 
-For each verdict, state:
-- **Confidence level** — high / medium / low
-- **Evidence quality** — primary / secondary / indirect / absent
-- **Caveats** — what could change the verdict
-- **Not checked** — what was not verified
+Такой gate предотвращает ложный фактчекинг художественных фраз и лозунгов.
 
-### Output Template (Standard and Publication-Grade)
+### Article / Longread Workflow
 
-1. **Summary verdict** — 1–3 sentences: what was checked, overall result.
-2. **Claim checks** — for each: claim, verdict, evidence, sources with dates, caveats, confidence level.
-3. **Material issues** — overstatements, missing context, unsupported assumptions.
-4. **Suggested correction** — reformulated claims incorporating verification results.
+Для длинной статьи выделяй 5–10 существенных утверждений, а не все детали подряд. Обязательно проверь:
+
+1. ссылки и битые URL;
+2. даты публикации/обновления;
+3. цитаты и атрибуции;
+4. числа, сравнения и «первый/единственный/крупнейший»;
+5. скриншоты, изображения и провенанс;
+6. личные воспоминания как self-report, если нет внешнего следа;
+7. внутренние источники проекта: они первичны для заявления автора, но не независимы для внешнего факта.
+
+### Проверка цитат
+
+Открой оригинальный документ, сравни дословно. Проверь контекст: не вырвана ли цитата? Правильна ли атрибуция? Меняет ли окружающий текст смысл?
+
+Применимо к типу «цитата» — обязательно во всех режимах.
+
+### Проверка научных и технических утверждений
+
+Отдельный порядок для научных/технических утверждений:
+
+1. Проверь метаданные публикации (авторы, дата, журнал)
+2. Сравни аннотацию с формулировкой утверждения
+3. Проверь таблицы/приложения на конкретные числа
+4. Проверь доступность кода и данных
+5. Проверь статус рецензирования
+6. Проверь доверительные интервалы
+7. Различай прямое измерение и оценку по модели
+
+### Лёгкая Chain-of-Verification
+
+Полный CoVe тяжёлый для быстрых ответов. Минимальный production-вариант: для собственного вывода сформулируй один вопрос, ответ на который мог бы изменить вердикт, проверь его отдельно и исправь вывод при расхождении. Полный CoVe оставляй для публикационного режима.
+
+### False rigor rule
+
+Не называй метод, если не применил его конкретно и не можешь указать результат.
+
+Плохо: «Используя попперовскую фальсификацию, утверждение правдоподобно.»
+Хорошо: «Поиск опровергающих данных: X, Y. Найдено Z, что ослабляет утверждение.»
+
+### Вердикт «непроверяемо в данной формулировке»
+
+Используй, когда claim слишком расплывчат, оценочен, метафоричен или не задаёт критерия проверки. Это лучше, чем «не подтверждено», потому что не создаёт ложного впечатления, будто был факт и он провалил проверку.
+
+Примеры: «лучший подход», «потрясающий результат», «ему нет равной реки в мире» без заданных критериев сравнения.
+
+### Неопределённость, достоверность и оговорки
+
+Для каждого вердикта укажи:
+- **Уровень достоверности** — высокий / средний / низкий
+- **Качество доказательств** — A/B/C/D/E или первичный / вторичный / косвенный / отсутствует
+- **Уровень доступа** — полный текст / метаданные / сниппет / OCR / недоступно
+- **Оговорки** — что может изменить вердикт
+- **Не проверено** — что не было проверено
+
+### Шаблон отчёта (стандартный и публикационный режимы)
+
+1. **Краткий вердикт** — 1–3 предложения: что проверялось, общий результат.
+2. **Проверка утверждений** — для каждого: точная формулировка, интерпретация, тип, критерий проверки, вердикт, доказательства, уровень источника, уровень доступа, даты, оговорки, уровень достоверности.
+3. **Ключевые проблемы** — преувеличения, упущенный контекст, неподтверждённые допущения.
+4. **Предложенная корректировка** — переформулированные утверждения с учётом результатов проверки.
